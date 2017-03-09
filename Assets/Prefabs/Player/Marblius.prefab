@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010103253146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.381, y: 0.164, z: 0.052}
+  m_LocalPosition: {x: -1.7936274, y: 0.192, z: 1.514}
   m_LocalScale: {x: 0.13, y: 0.13, z: 0.13}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -87,14 +87,14 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010103253146}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &114000010204233532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c83cfffcd8909f540ab995e53bf096ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballDropHeight: -5
+  ballDropHeight: -15
 --- !u!135 &135000010477669842
 SphereCollider:
   m_ObjectHideFlags: 1
