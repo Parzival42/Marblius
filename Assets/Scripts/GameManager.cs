@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
         if (player != null && spawnPoint != null)
         {
             GameObject g = Instantiate(player, spawnPoint.transform) as GameObject;
+            g.transform.SetParent(null);
             OnPlayerSpawn(g);
         }
     }
