@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public delegate void SpawnHandler(GameObject spawned);
 
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     private GameObject spawnPoint;
 
+    private GameObject[] allSpawnPoints;
+
     public static SpawnHandler OnSpawn;
 
 	private void Start()
@@ -21,33 +24,31 @@ public class GameManager : MonoBehaviour
         FailArea.OnFail += HandleFail;
         BallDropChecker.OnBallDropped += HandleBallDrop;
 
-        spawnPoint = GameObject.FindGameObjectWithTag("Spawn");
-        if (spawnPoint == null)
-            Debug.LogError("No spawn point found! Insert spawn point from <b>Assets/Prefabs/Utilies/SpawnPoint</b> into the scene!");
-        else
-            SpawnPlayer();
+        allSpawnPoints = GetAllSpawnpoints();
+        spawnPoint = ChooseRandomSpawn(allSpawnPoints);
+        SpawnPlayer();
 	}
 	
-	private void Update()
-    {
-	    
-	}
-
     protected void HandleFail(FailArea failArea, GameObject player)
     {
         Debug.Log("Player failed! Respawn at spawnpoint.");
+
+        spawnPoint = ChooseRandomSpawn(allSpawnPoints);
         Destroy(player);
         SpawnPlayer();
     }
 
     protected void HandleWin(WinArea failArea, GameObject player)
     {
-        // TODO
+        ResetStaticReferences();
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
+
         Debug.Log("Win Handle");
     }
 
     protected void HandleBallDrop(GameObject player)
     {
+        spawnPoint = ChooseRandomSpawn(allSpawnPoints);
         Destroy(player);
         SpawnPlayer();
         Debug.Log("Ball Drop");
@@ -57,8 +58,7 @@ public class GameManager : MonoBehaviour
     {
         if (player != null && spawnPoint != null)
         {
-            GameObject g = Instantiate(player, spawnPoint.transform) as GameObject;
-            g.transform.SetParent(null);
+            GameObject g = Instantiate(player, spawnPoint.transform.position, Quaternion.identity) as GameObject;
             OnPlayerSpawn(g);
         }
     }
@@ -69,7 +69,22 @@ public class GameManager : MonoBehaviour
             OnSpawn(p);
     }
 
-    protected void RestartGame()
+    private GameObject[] GetAllSpawnpoints()
+    {
+        GameObject[] spawns = GameObject.FindGameObjectsWithTag("Spawn");
+
+        if (spawns == null)
+            Debug.LogError("No spawn point found! Insert one or more spawn points from <b>Assets/Prefabs/Utilies/SpawnPoint</b> into the scene!");
+        return spawns;
+    }
+
+    private GameObject ChooseRandomSpawn(GameObject[] spawns)
+    {
+        int index = Random.Range(0, spawns.Length);
+        return spawns[index];
+    }
+
+    protected void ResetStaticReferences()
     {
         FailArea.ResetFailHandler();
         WinArea.ResetWinHandler();
