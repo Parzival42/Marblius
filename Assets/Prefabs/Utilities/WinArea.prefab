@@ -22,7 +22,6 @@ GameObject:
   - 33: {fileID: 33000012700133414}
   - 65: {fileID: 65000010601136578}
   - 23: {fileID: 23000011536962744}
-  - 114: {fileID: 114000011568380162}
   - 114: {fileID: 114000011035284234}
   m_Layer: 0
   m_Name: WinArea
@@ -101,16 +100,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61b4436e9bb551b4391fb650991b070b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114000011568380162
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012795001834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf18201ee41522498494f9988717755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
