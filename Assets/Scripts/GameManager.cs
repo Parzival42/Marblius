@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public delegate void SpawnHandler(GameObject spawned);
 
@@ -39,7 +40,9 @@ public class GameManager : MonoBehaviour
 
     protected void HandleWin(WinArea failArea, GameObject player)
     {
-        // TODO
+        ResetStaticReferences();
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
+
         Debug.Log("Win Handle");
     }
 
@@ -81,7 +84,7 @@ public class GameManager : MonoBehaviour
         return spawns[index];
     }
 
-    protected void RestartGame()
+    protected void ResetStaticReferences()
     {
         FailArea.ResetFailHandler();
         WinArea.ResetWinHandler();
