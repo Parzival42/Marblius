@@ -18,7 +18,17 @@ public class InputSystem : MonoBehaviour
 	private void Update()
     {
         HandleInput();
+        HandleExitApplication();
 	}
+
+    private void HandleExitApplication()
+    {
+        if (Input.GetAxis("Cancel") > 0)
+        {
+            Debug.Log("Exiting <b>Marblius!</b>");
+            Application.Quit();
+        }
+    }
 
     /// <summary>
     /// Handles the input which controlls the rotation of the Transform.
